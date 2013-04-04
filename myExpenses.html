@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Expenses</title>
+</head>
+<body ng-app="myExpenses">
+    <div ng-controller="MyExpensesCtrl">
+        <div ng-controller="CurrenciesCtrl">
+            <ul>
+                <li ng-repeat="currency in $root.currencyList.currencies">
+                    {{ currency.name }} | {{ currency.symbol }}
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div ng-controller="ChangesCtrl">
+            <ul>
+                <li ng-repeat="change in $root.changeList.changes">
+                    1 {{ change.from }} = {{ change.rate }} {{ change.to }}
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div ng-controller="ExpensesCtrl">
+            <ul>
+                <li ng-repeat="expense in $root.expenseList.expenses" ng-click="convertToAll(expense, $index)">
+                    {{ expense.name }} : {{ expense.price }} * {{ expense.quantity }} = {{ expense.total() }} {{ expense.currencyName }}
+                    <ul>
+                        <li ng-repeat="e in convertedExpense[$index]">
+                            {{ e[0] }} {{ e[1] }}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div ng-controller="ToolsCtrl">
+            <input ng-model="value">
+            <input ng-model="currencyName">
+            <ul>
+                <li ng-repeat="v in convertedValue">
+                    {{ v[0] }} {{ v[1] }}
+                </li>
+            </ul>
+        </div>
+        <hr>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script src="TestJs/TestJs.js"></script>
+    <script src="Currency/Currency.js"></script>
+    <script src="myExpenses.js"></script>
+</body>
+</html>
