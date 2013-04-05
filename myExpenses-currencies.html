@@ -1,0 +1,49 @@
+<div>
+    <h3>Taux de change</h3>
+    <form ng-submit="addChange(change)">
+        <ul class="list-table change" ng-repeat="change in $root.changeList.changes">
+            <li>1</li>
+            <li>{{change.from}}</li>
+            <li>{{change.rate}}</li>
+            <li>{{change.to}}</li>
+            <li>
+                <a class="btn btn-info" ng-click="editChange(change)">
+                    <i class="icon-edit icon-white"></i>
+                </a>
+                <a class="btn btn-inverse" ng-click="destroyChange(change)">
+                    <i class="icon-trash icon-white"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="list-table change">
+            <li>1</li>
+            <li>
+                <select ng-model="newChange.from">
+                    <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
+                </select>
+            </li>
+            <li>
+                <input type="number" step="any" ng-model="newChange.rate">
+            </li>
+            <li>
+                <select ng-model="newChange.to">
+                    <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
+                </select>
+            </li>
+            <li>
+                <a class="btn btn-warning" ng-show="editMode" ng-click="clearNewChange()">
+                    <i class="icon-ok icon-white"></i>
+                </a>
+                <a class="btn btn-success" ng-hide="editMode" ng-click="addChange()">
+                    <i class="icon-plus icon-white"></i>
+                </a>
+            </li>        
+        </ul>
+    </form>
+</div>
+<h3>Devises</h3>
+<ul>
+    <li ng-repeat="currency in $root.currencyList.currencies">
+        {{ currency.name }} | {{ currency.symbol }}
+    </li>
+</ul>

@@ -1,0 +1,128 @@
+body {
+    background-color: #fffefe;
+}
+.list-table {
+    margin: 0;
+    padding: 5px;
+    height: 30px;
+    width: 60%;
+    border-bottom: 1px solid #efefef;
+}
+.list-table li {
+    display: inline-block;
+}
+
+.list-table:nth-child(odd) {
+    background-color: #fcfcfc;
+}
+
+.expense li {
+    text-align: right;
+    line-height: 30px;
+/*    background-color: #eee;*/
+    text-align: center;
+}
+.expense li:nth-child(1) {
+    width: 40%;
+}
+.expense li:nth-child(2) {
+    width: 25%;
+}
+.expense li:nth-child(3) {
+/*    margin-left: 10px;*/
+    width: 5%;
+/*    text-align: center;*/
+}
+.expense li:nth-child(4) {
+    width: 26%;
+}
+
+.change:nth-last-child(2) {
+    border-bottom: 1px solid #ddd;
+}
+.change:last-child {   
+    border-bottom: 0;
+    background-color: #f9f9ff;
+}
+.change li {
+    width: 15%;
+}
+.change li:nth-child(odd) {
+    text-align: right;
+}
+.change li:last-child {
+    text-align: center;
+    width: 30%;
+}
+
+.list-table .btn {
+    margin: 0;
+    padding: 0;
+    
+    height: 30px;
+    width: 30px;
+    
+    border-radius: 100%;
+}
+.list-table .btn i {
+    margin-top: 6px;
+}
+
+.list-table select, input, input[type="number"] {
+    display: inline;
+    padding: 0 5px;
+
+    width: 75%;
+    height: 100%;
+    
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px dotted grey;
+    vertical-align:baseline;
+    background: transparent;
+    -webkit-appearance: none;
+}
+.list-table input[type="number"] {
+    width: 60%;
+    height: 30px;
+}
+@media (max-width: 640px) {
+    .navbar {
+        position: fixed;
+        left: 0;
+        bottom: -20px;
+        width: 100%;
+    
+    }
+    .navbar .navbar-inner { 
+        border-radius: 0;
+        padding: 0;
+    }
+    .navbar .nav {
+        padding-left: 9%;
+    }
+    .navbar .brand { display: none }
+    .navbar a span { display: none }
+    .navbar a {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+    }
+    
+
+    body > .container-fluid {
+        padding-top: 10px;
+        padding-bottom: 80px;
+    }
+
+
+    .list-table  {
+        width: 100%;
+    }
+    .list-table input::-webkit-outer-spin-button,
+    .list-table input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
