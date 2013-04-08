@@ -84,6 +84,18 @@ select, input, input[type="number"] {
 .expense li:nth-child(4) {
     width: 26%;
 }
+.expense.newExpense li:nth-child(1) {
+    width: 35%;
+}
+.expense.newExpense li:nth-child(2) {
+    width: 25%;
+}
+.expense.newExpense li:nth-child(3) {
+    width: 5%;
+}
+.expense.newExpense li:nth-child(4) {
+    width: 15%;
+}
 
 .change:nth-last-child(2) {
     border-bottom: 1px solid #ddd;

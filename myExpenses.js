@@ -107,9 +107,19 @@ function ArchivesCtrl($scope) {
 }
 function ExpensesCtrl($scope, expenseRenderer) {
     $scope.$root.currentMenuItem = "#/expenses";
+    $scope.newExpense = new Expense("", "", "YEN", 1);
     $scope.expenseRenderer = function (price, expense) {
         return expenseRenderer(price, expense, $scope.$root.changeList, $scope.$root.currencyList.toHash(), $scope.$root.displayCurrency);
-    }
+    };
+    $scope.addExpense = function () {
+        console.log("tt");
+        if ($scope.newExpense.name && $scope.newExpense.quantity && $scope.newExpense.price) {
+            $scope.$root.expenseList.add($scope.newExpense);
+            $scope.newExpense = new Expense("", "", "YEN", 1);
+            
+        }
+    };
+    
 
 }
 function ToolsCtrl ($scope, $timeout) {
