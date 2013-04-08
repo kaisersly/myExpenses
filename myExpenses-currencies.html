@@ -1,6 +1,13 @@
 <div>
     <h3>Taux de change</h3>
     <form ng-submit="addChange(change)">
+        <ul class="list-table header change">
+            <li></li>
+            <li>De</li>
+            <li></li>
+            <li>Vers</li>
+            <li></li>
+        </ul>
         <ul class="list-table change" ng-repeat="change in $root.changeList.changes">
             <li>1</li>
             <li>{{change.from}}</li>
@@ -23,7 +30,7 @@
                 </select>
             </li>
             <li>
-                <input type="number" step="any" ng-model="newChange.rate">
+                <input id="newChange-rate" type="number" step="any" ng-model="newChange.rate">
             </li>
             <li>
                 <select ng-model="newChange.to">

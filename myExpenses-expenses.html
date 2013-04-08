@@ -1,4 +1,10 @@
 <h3>Dépenses</h3>
+<ul class="list-table header expense">
+    <li>Nom</li>
+    <li>Montant</li>
+    <li><span class="full">Quantité</span><span class="mini">Qté</span></li>
+    <li>Total</li>
+</ul>
 <ul class="list-table expense" ng-repeat="expense in $root.expenseList.expenses">
     <li>{{expense.name}}</li>
     <li>{{expense.price}} {{expense.currencyName}}</li>

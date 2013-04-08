@@ -24,9 +24,6 @@ myExpenses.config(function ($routeProvider){
 
 function MyExpensesCtrl ($scope, $route) {
     $scope.$route = $route;
-//    $scope.$root.$watch("currentMenuItem", function() {
-//        console.log(a);
-//    }, true);
     $scope.$root.menuItems = [
         {
             label: "Accueil",
@@ -92,7 +89,7 @@ function CurrenciesCtrl($scope) {
     $scope.editChange = function (change) {
         $scope.newChange = change;
         $scope.editMode = true;
-        document.querySelector("input[type=\"number\"]").focus();
+        document.querySelector("#newChange-rate").focus();
     }
     $scope.destroyChange = function (change) {
         $scope.$root.changeList.destroy(change.from, change.to);
