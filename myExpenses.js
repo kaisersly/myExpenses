@@ -21,7 +21,14 @@ myExpenses.config(function ($routeProvider){
             redirectTo: "/tools"
         })
 });
-
+myExpenses.factory('expenseRenderer', function ($parse, $filter){  
+    return function (expression, expense, changeList, currencyHash, to) {
+        expense = expense.convert(changeList, to);
+        var symbol = currencyHash[expense.currencyName];
+        var text = $filter("currency")($parse(expression)(expense), symbol);
+        return [text, expense.converted];
+    }
+});
 function MyExpensesCtrl ($scope, $route) {
     $scope.$route = $route;
     $scope.$root.menuItems = [
@@ -48,9 +55,9 @@ function MyExpensesCtrl ($scope, $route) {
     ];
     
     var currencies = [
-        new Currency("EUR", "E"),
-        new Currency("YEN", "Y"),
-        new Currency("USD", "$")
+        new Currency("EUR", "€ "),
+        new Currency("YEN", "¥ "),
+        new Currency("USD", "$ ")
     ];
     $scope.$root.currencyList = new CurrencyList(currencies);
     
@@ -98,20 +105,42 @@ function CurrenciesCtrl($scope) {
 function ArchivesCtrl($scope) {
     $scope.$root.currentMenuItem = "#/archives";
 }
-function ExpensesCtrl($scope) {
+function ExpensesCtrl($scope, expenseRenderer) {
     $scope.$root.currentMenuItem = "#/expenses";
-    $scope.convertedExpense = [];
-    $scope.convertToAll = function (expense, index) {
-        $scope.convertedExpense[index] = $scope.$root.changeList.convert(expense.price, expense.currencyName);
-    };
+    $scope.expenseRenderer = function (price, expense) {
+        return expenseRenderer(price, expense, $scope.$root.changeList, $scope.$root.currencyList.toHash(), $scope.$root.displayCurrency);
+    }
+
 }
-function ToolsCtrl ($scope) {
+function ToolsCtrl ($scope, $timeout) {
     $scope.$root.currentMenuItem = "#/tools";
-    $scope.$watch("value", function (a, b) {
-        if (a !== undefined) {
-            if ($scope.currencyName) {
-                $scope.convertedValue = $scope.$root.changeList.convert($scope.value, $scope.currencyName);
-            }
+    $scope.converter = {
+        from: "YEN",
+        to: "EUR",
+        switchChange: function () {
+            var oldFrom = this.from;
+            this.from = this.to;
+            this.to = oldFrom;
         }
+    };
+    ["converter.from", "converter.to"].forEach(function (expression) {
+        $scope.$watch(expression, function (){
+            $scope.converter.change = $scope.$root.changeList.find($scope.converter.from,$scope.converter.to);
+            if ($scope.converter.change) {
+                $scope.converter.notice = "";
+            } else {
+                $scope.converter.notice = "Convertisseur inconnu";
+            }
+        });
     });
+    ["converter.from", "converter.to", "converter.value"].forEach(function (expression) {
+        $scope.$watch(expression, function () {
+            convert();
+        });
+    });
+    function convert() {
+        if ($scope.converter.change) {
+            $scope.converter.converted = $scope.converter.change.convert($scope.converter.value);
+        }
+    }
 }

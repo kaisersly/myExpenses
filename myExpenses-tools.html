@@ -1,10 +1,22 @@
 <h3>Convertisseur</h3>
-<input ng-model="value">
-<input ng-model="currencyName">
-<ul>
-    <li ng-repeat="v in convertedValue">
-        {{ v[0] }} {{ v[1] }}
+
+<ul class="list-table converter">
+    <li>
+        <input type="number" step="any" ng-model="converter.value" autofocus>
     </li>
+    <li>
+        <select ng-model="converter.from">
+            <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
+        </select>
+    </li>
+    <li><a ng-click="converter.switchChange()"><i class="icon-refresh"></i></a></li>
+    <li>{{converter.converted | currency: ""}}</li>
+    <li>
+        <select ng-model="converter.to">
+            <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
+        </select>
+    </li>    
 </ul>
+<i>{{converter.notice}}</i>
 
 <h3>Ajout Rapide</h3>

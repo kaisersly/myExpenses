@@ -1,6 +1,29 @@
 body {
     background-color: #fffefe;
 }
+select, input, input[type="number"] {
+    display: inline;
+    padding: 0 5px;
+
+    width: 75%;
+    height: 100%;
+    
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px dotted grey;
+    vertical-align:baseline;
+    background: transparent;
+    -webkit-appearance: none;
+}
+#displayCurrency {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    
+    width: 40px;
+    height: 25px;
+        
+}
 .list-table {
     margin: 0;
     padding: 5px;
@@ -28,20 +51,6 @@ body {
     margin-top: 6px;
 }
 
-.list-table select, input, input[type="number"] {
-    display: inline;
-    padding: 0 5px;
-
-    width: 75%;
-    height: 100%;
-    
-    border-radius: 0;
-    border: 0;
-    border-bottom: 1px dotted grey;
-    vertical-align:baseline;
-    background: transparent;
-    -webkit-appearance: none;
-}
 .list-table input[type="number"] {
     width: 60%;
     height: 30px;
@@ -94,7 +103,24 @@ body {
     width: 30%;
 }
 
+.converter input[type="number"] {
+    text-align: right;
+}
+.converter li:nth-child(1), .converter li:nth-child(4) {
+    text-align: right;
+    width: 20%;
+}
+.converter li:nth-child(2), .converter li:nth-child(5) {
+    width: 15%;
+}
+.converter li:nth-child(3) {
+    width: 5%;
+    text-align: center;
+}
 
+.converted {
+    font-weight: bold;
+}
 
 @media (max-width: 640px) {
     .navbar {
@@ -140,5 +166,12 @@ body {
     }
     .list-table.header span.mini {
         display: inline;
+    }
+    #displayCurrency {
+        display:fixed;
+/*        width: 100px;*/
+        top: auto;
+        right: 2px;
+        bottom: 15px;
     }
 }

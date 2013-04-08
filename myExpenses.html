@@ -22,6 +22,10 @@
              </div>
         </div>
         <div ng-view></div>
+        <select id="displayCurrency" ng-model="$root.displayCurrency">
+            <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
+        </select>
+            
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>

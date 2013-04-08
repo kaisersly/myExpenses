@@ -1,16 +1,18 @@
 <h3>Dépenses</h3>
-<ul class="list-table header expense">
-    <li>Nom</li>
-    <li>Montant</li>
-    <li><span class="full">Quantité</span><span class="mini">Qté</span></li>
-    <li>Total</li>
-</ul>
-<ul class="list-table expense" ng-repeat="expense in $root.expenseList.expenses">
-    <li>{{expense.name}}</li>
-    <li>{{expense.price}} {{expense.currencyName}}</li>
-    <li>{{expense.quantity}}</li>
-    <li>{{expense.total()}} {{expense.currencyName}}</li>
-</ul>
+<form>
+    <ul class="list-table header expense">
+        <li>Nom</li>
+        <li>Montant</li>
+        <li><span class="full">Quantité</span><span class="mini">Qté</span></li>
+        <li>Total</li>
+    </ul>
+    <ul class="list-table expense" ng-repeat="expense in $root.expenseList.expenses">
+        <li>{{expense.name}}</li>
+        <li ng-class="expenseRenderer('price', expense)[1] && 'converted'">{{expenseRenderer("price", expense)[0]}}</li>
+        <li>{{expense.quantity}}</li>
+        <li ng-class="expenseRenderer('price', expense)[1] && 'converted'">{{expenseRenderer("total()", expense)[0]}}</li>
+    </ul>
+</form>
 <!--<ul>
     <li ng-repeat="expense in $root.expenseList.expenses" ng-click="convertToAll(expense, $index)">
         {{ expense.name }} : {{ expense.price }} * {{ expense.quantity }} = {{ expense.total() }} {{ expense.currencyName }}
