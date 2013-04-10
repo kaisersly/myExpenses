@@ -29,6 +29,34 @@ myExpenses.factory('expenseRenderer', function ($parse, $filter){
         return [text, expense.converted];
     }
 });
+myExpenses.factory('totals', function ($parse, $filter){  
+    return function (expression, expenseList, changeList, displayCurrency, currencyHash) {
+        var expenses = {},
+            totals = [];
+        Object.keys(currencyHash).forEach(function (currencyName) {
+            expenses[currencyName] = 0;
+        });
+        expenseList.expenses.forEach(function (expense) {
+            var currentExpense;
+            if (displayCurrency && displayCurrency != "") {
+                currentExpense = expense.convert(changeList, displayCurrency);
+            } else {
+                currentExpense = expense;
+            }
+            if ($parse(expression)(expense)) {
+                expenses[currentExpense.currencyName] += currentExpense.total();
+            }
+        });
+        angular.forEach(expenses, function (value, key) {
+            var symbol = currencyHash[key];
+            if (value > 0) {
+                totals.push($filter("currency")(value, symbol));
+            }
+        });
+        return totals;
+    }
+});
+
 function MyExpensesCtrl ($scope, $route) {
     $scope.$route = $route;
     $scope.$root.menuItems = [
@@ -69,8 +97,14 @@ function MyExpensesCtrl ($scope, $route) {
     
     var expenses = [
         new Expense("Avion", 900, "EUR", 1),
+        new Expense("Hotel", 5000, "YEN", 10),
+        new Expense("Avion", 900, "EUR", 1),
+        new Expense("Hotel", 5000, "YEN", 10),
         new Expense("Hotel", 5000, "YEN", 10)
     ];
+    expenses[2].archivedAt = new Date(2013,04,10);
+    expenses[3].archivedAt = new Date(2013,04,09);
+    expenses[4].archivedAt = new Date(2013,04,11);
     $scope.$root.expenseList = new ExpenseList(expenses);
 }
 
@@ -102,24 +136,55 @@ function CurrenciesCtrl($scope) {
         $scope.$root.changeList.destroy(change.from, change.to);
     };
 }
-function ArchivesCtrl($scope) {
+function ArchivesCtrl($scope, $filter, expenseRenderer, totals) {
     $scope.$root.currentMenuItem = "#/archives";
+    $scope.expenseRenderer = function (price, expense) {
+        return expenseRenderer(price, expense, $scope.$root.changeList, $scope.$root.currencyList.toHash(), $scope.$root.displayCurrency);
+    };   
+    $scope.unarchiveExpense = function (expense) {
+        delete (expense.archivedAt);
+    };
+    $scope.destroyExpense = function (i) {
+        $scope.$root.expenseList.destroy(i);
+    };
+    $scope.totals = function() {
+        return totals("archivedAt", $scope.$root.expenseList, $scope.$root.changeList, $scope.$root.displayCurrency, $scope.$root.currencyList.toHash());
+    };
 }
-function ExpensesCtrl($scope, expenseRenderer) {
+function ExpensesCtrl($scope, expenseRenderer, totals) {
     $scope.$root.currentMenuItem = "#/expenses";
-    $scope.newExpense = new Expense("", "", "YEN", 1);
+//    $scope.newExpense = new Expense("", "", $scope.$root.displayCurrency, 1);
     $scope.expenseRenderer = function (price, expense) {
         return expenseRenderer(price, expense, $scope.$root.changeList, $scope.$root.currencyList.toHash(), $scope.$root.displayCurrency);
     };
     $scope.addExpense = function () {
-        console.log("tt");
-        if ($scope.newExpense.name && $scope.newExpense.quantity && $scope.newExpense.price) {
+        if ($scope.editMode) {
+            $scope.clearNewExpense();
+            return true;
+        }
+        if ($scope.newExpense.name && $scope.newExpense.quantity && $scope.newExpense.price && $scope.newExpense.currencyName) {
             $scope.$root.expenseList.add($scope.newExpense);
-            $scope.newExpense = new Expense("", "", "YEN", 1);
-            
+            $scope.clearNewExpense();            
         }
     };
-    
+    $scope.clearNewExpense = function () {
+        $scope.newExpense = new Expense("", "", $scope.$root.displayCurrency, 1);
+        $scope.editMode = false;
+    }
+    $scope.clearNewExpense();
+    $scope.editExpense = function (expense) {
+        $scope.newExpense = expense;
+        $scope.editMode = true;
+        document.querySelector("input[type=\"text\"]").focus();
+    }
+    $scope.archiveExpense = function (expense) {
+        expense.archivedAt = new Date();
+        $scope.clearNewExpense();
+    };
+
+    $scope.totals = function() {
+        return totals("!archivedAt", $scope.$root.expenseList, $scope.$root.changeList, $scope.$root.displayCurrency, $scope.$root.currencyList.toHash());
+    };
 
 }
 function ToolsCtrl ($scope, $timeout) {

@@ -24,6 +24,19 @@ select, input, input[type="number"] {
     height: 25px;
         
 }
+
+.btn-round {
+    margin: 0;
+    padding: 0;
+    
+    height: 30px;
+    width: 30px;
+    
+    border-radius: 100%;
+}
+a.btn-round i {
+    margin-top: 6px;
+}
 .list-table {
     margin: 0;
     padding: 5px;
@@ -38,18 +51,6 @@ select, input, input[type="number"] {
 .list-table:nth-child(odd) {
     background-color: #fafafa;
 }
-.list-table .btn {
-    margin: 0;
-    padding: 0;
-    
-    height: 30px;
-    width: 30px;
-    
-    border-radius: 100%;
-}
-.list-table .btn i {
-    margin-top: 6px;
-}
 
 .list-table input[type="number"] {
     width: 60%;
@@ -63,11 +64,14 @@ select, input, input[type="number"] {
 .list-table.header span.mini {
     display: none;
 }
+.list-table.new {   
+    border-bottom: 0;
+    background-color: #f9f9ff;
+}
 
 .expense li {
     text-align: right;
     line-height: 30px;
-/*    background-color: #eee;*/
     text-align: center;
 }
 .expense li:nth-child(1) {
@@ -77,9 +81,7 @@ select, input, input[type="number"] {
     width: 25%;
 }
 .expense li:nth-child(3) {
-/*    margin-left: 10px;*/
     width: 5%;
-/*    text-align: center;*/
 }
 .expense li:nth-child(4) {
     width: 26%;
@@ -97,12 +99,35 @@ select, input, input[type="number"] {
     width: 15%;
 }
 
+.archive {
+    padding: 0;
+    height: 100%;
+    border-bottom: 2px dotted grey;
+}
+.archive li:nth-child(1) {
+    width: 100%;
+/*    border-top: 2px solid #ddd;*/
+    border-bottom: 1px dotted grey;
+    
+    color: #555;
+    background-color: #eee;
+    font-weight: bold;
+}
+.archive li:nth-child(2) {
+    width: 40%;
+}
+.archive li:nth-child(3) {
+    width: 25%;
+}
+.archive li:nth-child(4) {
+    width: 5%;
+}
+.archive li:nth-child(5) {
+    width: 26%;
+}
+
 .change:nth-last-child(2) {
     border-bottom: 1px solid #ddd;
-}
-.change:last-child {   
-    border-bottom: 0;
-    background-color: #f9f9ff;
 }
 .change li {
     width: 15%;
@@ -132,6 +157,9 @@ select, input, input[type="number"] {
 
 .converted {
     font-weight: bold;
+}
+.edited:nth-child(even), .edited:nth-child(odd) {
+    background-color: #fefeee;
 }
 
 @media (max-width: 640px) {

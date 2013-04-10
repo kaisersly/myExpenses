@@ -14,15 +14,15 @@
             <li>{{change.rate}}</li>
             <li>{{change.to}}</li>
             <li>
-                <a class="btn btn-info" ng-click="editChange(change)">
+                <a class="btn btn-info btn-round" ng-click="editChange(change)">
                     <i class="icon-edit icon-white"></i>
                 </a>
-                <a class="btn btn-inverse" ng-click="destroyChange(change)">
+                <a class="btn btn-inverse btn-round" ng-click="destroyChange(change)">
                     <i class="icon-trash icon-white"></i>
                 </a>
             </li>
         </ul>
-        <ul class="list-table change">
+        <ul class="list-table new change">
             <li>1</li>
             <li>
                 <select ng-model="newChange.from">
@@ -38,10 +38,10 @@
                 </select>
             </li>
             <li>
-                <a class="btn btn-warning" ng-show="editMode" ng-click="clearNewChange()">
+                <a class="btn btn-warning btn-round" ng-show="editMode" ng-click="clearNewChange()">
                     <i class="icon-ok icon-white"></i>
                 </a>
-                <a class="btn btn-success" ng-hide="editMode" ng-click="addChange()">
+                <a class="btn btn-success btn-round" ng-hide="editMode" ng-click="addChange()">
                     <i class="icon-plus icon-white"></i>
                 </a>
             </li>        

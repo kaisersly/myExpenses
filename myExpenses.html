@@ -23,6 +23,7 @@
         </div>
         <div ng-view></div>
         <select id="displayCurrency" ng-model="$root.displayCurrency">
+            <option></option>
             <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
         </select>
             
