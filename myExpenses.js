@@ -103,7 +103,7 @@ function MyExpensesCtrl ($scope, $route) {
         new Expense("Hotel", 5000, "YEN", 10)
     ];
     expenses[2].archivedAt = new Date(2013,04,10);
-    expenses[3].archivedAt = new Date(2013,04,09);
+    expenses[3].archivedAt = new Date(2013,04,10);
     expenses[4].archivedAt = new Date(2013,04,11);
     $scope.$root.expenseList = new ExpenseList(expenses);
 }
@@ -218,4 +218,15 @@ function ToolsCtrl ($scope, $timeout) {
             $scope.converter.converted = $scope.converter.change.convert($scope.converter.value);
         }
     }
+    $scope.addExpense = function () {
+        if ($scope.newExpense.name && $scope.newExpense.quantity && $scope.newExpense.price && $scope.newExpense.currencyName) {
+            $scope.newExpense.archivedAt = new Date();
+            $scope.$root.expenseList.add($scope.newExpense);
+            $scope.clearNewExpense();            
+        }
+    };
+    $scope.clearNewExpense = function () {
+        $scope.newExpense = new Expense("", "", $scope.$root.displayCurrency, 1);
+    };
+    $scope.clearNewExpense();
 }

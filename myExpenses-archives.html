@@ -1,10 +1,12 @@
-<h3>Archives</h3>
+<h3 class="archiveTitle">Archives</h3>
+<!--
 <ul class="list-table header expense">
     <li>Nom</li>
     <li>Montant</li>
     <li><span class="full">Quantité</span><span class="mini">Qté</span></li>
     <li>Total</li>
 </ul>
+-->
 <ul class="list-table expense archive" ng-repeat="expense in $root.expenseList.expenses" ng-show="expense.archivedAt">
     <li ng-show="(expense.archivedAt | date: 'dd/MM/yyyy') != ($root.expenseList.expenses[$index - 1].archivedAt | date: 'dd/MM/yyyy')">{{expense.archivedAt | date: 'dd/MM/yyyy'}}</li>
 <!--    {{$root.expenseList.expenses[$index - 1].archivedAt | date: 'dd/MM/yyyy'}}-->

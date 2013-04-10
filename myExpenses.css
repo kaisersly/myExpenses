@@ -49,7 +49,7 @@ a.btn-round i {
 }
 
 .list-table:nth-child(odd) {
-    background-color: #fafafa;
+/*    background-color: #fafafa;*/
 }
 
 .list-table input[type="number"] {
@@ -87,13 +87,13 @@ a.btn-round i {
     width: 26%;
 }
 .expense.newExpense li:nth-child(1) {
-    width: 35%;
+    width: 34%;
 }
 .expense.newExpense li:nth-child(2) {
-    width: 25%;
+    width: 23%;
 }
 .expense.newExpense li:nth-child(3) {
-    width: 5%;
+    width: 6%;
 }
 .expense.newExpense li:nth-child(4) {
     width: 15%;
@@ -102,12 +102,19 @@ a.btn-round i {
 .archive {
     padding: 0;
     height: 100%;
-    border-bottom: 2px dotted grey;
+    border-bottom: 1px dotted grey;
+}
+.archive:nth-child(odd) {
+/*    background-color:transparent;*/
+}
+.archiveTitle {
+    margin-bottom: -5px;
 }
 .archive li:nth-child(1) {
+    margin-top: 20px;
     width: 100%;
-/*    border-top: 2px solid #ddd;*/
-    border-bottom: 1px dotted grey;
+    border-top: 2px solid #bbb;
+    border-bottom: 2px solid #bbb;
     
     color: #555;
     background-color: #eee;
@@ -158,7 +165,7 @@ a.btn-round i {
 .converted {
     font-weight: bold;
 }
-.edited:nth-child(even), .edited:nth-child(odd) {
+.edited {
     background-color: #fefeee;
 }
 
