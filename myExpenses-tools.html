@@ -2,6 +2,9 @@
 
 <ul class="list-table converter">
     <li>
+        <a ng-click="converter.value=''"><i class="icon-remove"></i></a>
+    </li>
+    <li>
         <input type="number" step="any" ng-model="converter.value" autofocus>
     </li>
     <li>
@@ -10,12 +13,12 @@
         </select>
     </li>
     <li><a ng-click="converter.switchChange()"><i class="icon-refresh"></i></a></li>
-    <li>{{converter.converted | currency: ""}}</li>
     <li>
         <select ng-model="converter.to">
             <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
         </select>
     </li>    
+    <li>{{converter.converted | currency: ""}}</li>
 </ul>
 <i>{{converter.notice}}</i>
 

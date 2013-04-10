@@ -147,7 +147,11 @@ function MyExpensesCtrl ($scope, $route) {
             $scope.$root.changeList.add(change.from, change.to, change.rate);
         });
         expenses.forEach(function (expense) {
-            $scope.$root.expenseList.add(new Expense(expense.name, expense.price, expense.currencyName, expense.quantity));
+            var newExpense = new Expense(expense.name, expense.price, expense.currencyName, expense.quantity);
+            if (expense.archivedAt) {
+                newExpense.archivedAt = expense.archivedAt;
+            }
+            $scope.$root.expenseList.add(newExpense);
         });
         
         [['currencyList', 'currencies'], ['changeList', 'changes'], ['expenseList', 'expenses']].forEach(function (list) {

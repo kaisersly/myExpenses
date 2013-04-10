@@ -147,19 +147,24 @@ a.btn-round i {
     width: 30%;
 }
 
+.converter {
+    margin-bottom: 30px;
+}
 .converter input[type="number"] {
     text-align: right;
 }
 .converter li:nth-child(1), .converter li:nth-child(4) {
+    width: 5%;
+}
+.converter li:nth-child(2) {
     text-align: right;
     width: 20%;
 }
-.converter li:nth-child(2), .converter li:nth-child(5) {
+.converter li:nth-child(3), .converter li:nth-child(5) {
     width: 15%;
 }
-.converter li:nth-child(3) {
-    width: 5%;
-    text-align: center;
+.converter li:nth-child(6) {
+    width: 100%;
 }
 
 .converted {
@@ -169,7 +174,19 @@ a.btn-round i {
     background-color: #fefeee;
 }
 
-@media (max-width: 640px) {
+.mobile {
+    width: 640px;
+}
+
+/*@media (max-width: 640px) {*/
+@media only screen and (max-device-width: 480px) {
+    body {
+        width: 480px;
+        font-size: 1.1em;
+    }
+    h3 {
+        font-size: 1.5em;
+    }
     .navbar {
         position: fixed;
         left: 0;
