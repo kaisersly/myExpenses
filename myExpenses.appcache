@@ -8,10 +8,10 @@ http://fonts.googleapis.com/css?family=Autour+One
 http://themes.googleusercontent.com/static/fonts/robotocondensed/v7/b9QBgL0iMZfDSpmcXcE8nPZRQUbYfRc-1FWT9T9EE8M.woff
 http://fonts.googleapis.com/css?family=Roboto+Condensed:700
 # font awesome
-font/fontawesome-webfont.eot
-font/fontawesome-webfont.svg
-font/fontawesome-webfont.ttf
-font/fontawesome-webfont.woff
+font/fontawesome-webfont.eot?v=3.0.1
+font/fontawesome-webfont.eot?#iefix&v=3.0.1'
+font/fontawesome-webfont.ttf?v=3.0.1
+font/fontawesome-webfont.woff?v=3.0.1
 font/FontAwesome.otf
 # css
 css/elements.css
@@ -29,21 +29,22 @@ img/touch/apple-touch-icon-72x72-precomposed.png
 img/touch/apple-touch-icon-precomposed.png
 img/touch/apple-touch-icon.png
 # js
-vendor/modernizr-2.6.2.min.js
-helper.js
-plugins.js
-Testjs.js
-Currency.js
-myExpenses.js
-app/init.js
-app/services/expenseRenderer.js
-app/services/Store.js
-app/services/totals.js
-app/controllers/MyExpensesCtrl.js
-app/controllers/ToolsCtrl.js
-app/controllers/CurrenciesCtrl.js
-app/controllers/ExpensesCtrl.js
-app/controllers/ArchivesCtrl.js
+http://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js
+js/vendor/modernizr-2.6.2.min.js
+js/helper.js
+js/plugins.js
+js/TestJs.js
+js/Currency.js
+js/myExpenses.js
+js/app/init.js
+js/app/services/expenseRenderer.js
+js/app/services/Store.js
+js/app/services/totals.js
+js/app/controllers/MyExpensesCtrl.js
+js/app/controllers/ToolsCtrl.js
+js/app/controllers/CurrenciesCtrl.js
+js/app/controllers/ExpensesCtrl.js
+js/app/controllers/ArchivesCtrl.js
 # templates
 templates/archives.html
 templates/currencies.html
