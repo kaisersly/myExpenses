@@ -1,33 +1,59 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]>    <html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title>Mes Dépenses</title>
+    <meta name="description" content="Gestion de dépenses et de devises">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href="css/myExpenses.css" rel="stylesheet">
-    <title>My Expenses</title>
+    <meta http-equiv="cleartype" content="on">
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png">
+    <link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
+    <link rel="apple-touch-startup-image" href="img/startup/startup.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#222222">
+
+
+    <!-- For iOS web apps. Delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Mes Dépenses">
+    
+
+    <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
+    <!--
+    <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
+    -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/elements.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/list-table.css">
+    <script src="js/plugins.js"></script>
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body ng-app="myExpenses">
-    <div class="container-fluid" ng-controller="MyExpensesCtrl">        
-        <div class="navbar">
-            <div class="navbar-inner">
-                <a class="brand" href="#">Title</a>
-                <ul class="nav">
-                    <li class="{{($root.currentMenuItem == item.href) && 'active'}}" ng-repeat="item in $root.menuItems">
-                        <a ng-href="{{item.href}}">
-                            <i class="{{item.iconClass}}"></i>
-                            <span>{{item.label}}</span>
-                        </a>
-                    </li>
-                </ul>
-             </div>
-        </div>
+    <ul class="menu">
+        <li class="{{($root.currentMenuItem == item.href) && 'active'}}" ng-repeat="item in $root.menuItems">
+            <a class="btn" ng-href="{{item.href}}">
+                <i class="{{item.iconClass}}"></i>
+                <span>{{item.label}}</span>
+            </a>
+        </li>
+    </ul>
+    <div class="container" ng-controller="MyExpensesCtrl">        
         <div ng-view></div>
-        <select id="displayCurrency" ng-model="$root.displayCurrency">
-            <option></option>
-            <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
-        </select>
-            
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>

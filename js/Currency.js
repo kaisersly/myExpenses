@@ -167,6 +167,13 @@ var CurrencyList = function (currencies) {
         }
         return currency;
     };
+    CurrencyList.destroy = function (name) {
+        CurrencyList.currencies.forEach(function (c, i) {
+            if (c.name === name) {
+                CurrencyList.currencies.splice(i, 1);
+            }
+        });
+    }
     CurrencyList.toHash = function () {
         var hash = {};
         CurrencyList.currencies.forEach(function (currency) {

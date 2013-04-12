@@ -20,6 +20,10 @@ function ExpensesCtrl($scope, expenseRenderer, totals) {
     }
     $scope.clearNewExpense();
     $scope.editExpense = function (expense) {
+        if (expense == $scope.newExpense) {
+            $scope.clearNewExpense();
+            return true;
+        }
         $scope.newExpense = expense;
         $scope.editMode = true;
         document.querySelector("input[type=\"text\"]").focus();

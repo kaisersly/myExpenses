@@ -8,17 +8,17 @@ function MyExpensesCtrl ($scope, $route, Store) {
         },
         {
             label: "Dépenses",
-            iconClass: "icon-list-alt",
+            iconClass: "icon-money",
             href: "#/expenses"
         },
         {
             label: "Archives",
-            iconClass: "icon-calendar",
+            iconClass: "icon-folder-open",
             href: "#/archives"
         },
         {
             label: "Devises",
-            iconClass: "icon-globe",
+            iconClass: "icon-cog",
             href: "#/currencies"
         }
     ];
@@ -98,9 +98,11 @@ function MyExpensesCtrl ($scope, $route, Store) {
         if ($scope.$root.currencyList.currencies.length == 0) {
             $scope.$root.currencyList.add("EUR", "€ ");
             $scope.$root.currencyList.add("YEN", "¥ ");
+            $scope.$root.currencyList.add("USD", "$ ");
         }
         if ($scope.$root.changeList.changes.length == 0) {
             $scope.$root.changeList.add("EUR", "YEN", 125);
+            $scope.$root.changeList.add("USD", "EUR", 0.8);
         }
     }, 1);
     

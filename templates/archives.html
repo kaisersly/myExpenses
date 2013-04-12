@@ -1,28 +1,27 @@
-<h3 class="archiveTitle">Archives</h3>
-<!--
-<ul class="list-table header expense">
-    <li>Nom</li>
-    <li>Montant</li>
-    <li><span class="full">Quantité</span><span class="mini">Qté</span></li>
-    <li>Total</li>
+<h3>Archives</h3>
+<ul class="list-table expense headers">
+    <li class="name">Nom</li>
+    <li class="price">Prix</li>
+    <li class="qte">Qté</li>
+    <li class="price">Total</li>
 </ul>
--->
-<ul class="list-table expense archive" ng-repeat="expense in $root.expenseList.expenses" ng-show="expense.archivedAt">
-    <li ng-show="(expense.archivedAt | date: 'dd/MM/yyyy') != ($root.expenseList.expenses[$index - 1].archivedAt | date: 'dd/MM/yyyy')">{{expense.archivedAt | date: 'dd/MM/yyyy'}}</li>
-<!--    {{$root.expenseList.expenses[$index - 1].archivedAt | date: 'dd/MM/yyyy'}}-->
-    <li ng-click="showActions = false">{{expense.name}}</li>
-    <li ng-class="expenseRenderer('price', expense)[1] && 'converted'" ng-click="showActions = false">{{expenseRenderer("price", expense)[0]}}</li>
-    <li ng-click="showActions = false">{{expense.quantity}}</li>
-    <li ng-class="expenseRenderer('price', expense)[1] && 'converted'" ng-click="showActions = !showActions">
-        <span ng-show="showActions">
-            <a class="btn btn-round" ng-click="unarchiveExpense(expense)">
-                <i class="icon-list-alt"></i>
-            </a>
-            <a class="btn btn-inverse btn-round" ng-click="destroyExpense($index)">
-                <i class="icon-trash icon-white"></i>
-            </a>
+<ul class="list-table expense" ng-repeat="expense in $root.expenseList.expenses" ng-show="expense.archivedAt">
+    <li class="date" ng-show="(expense.archivedAt | date: 'dd/MM/yyyy') != ($root.expenseList.expenses[$index - 1].archivedAt | date: 'dd/MM/yyyy')">{{expense.archivedAt | date: 'dd/MM/yyyy'}}</li>
+    <li class="name" ng-click="showActions = false">{{expense.name}}</li>
+    <li class="price" ng-class="expenseRenderer('price', expense)[1] && 'converted'" ng-click="showActions = false">
+        <span>
+            {{expenseRenderer("price", expense)[0]}}
         </span>
-        <span ng-hide="showActions">{{expenseRenderer("total()", expense)[0]}}</span>
+    </li>
+    <li class="qte" ng-click="showActions = false">{{expense.quantity}}</li>
+    <li class="price" ng-class="expenseRenderer('price', expense)[1] && 'converted'" ng-click="showActions = true" ng-hide="showActions">
+        <span>
+            {{expenseRenderer("total()", expense)[0]}}
+        </span>
+    </li>
+    <li class="actions" ng-show="showActions">
+        <a class="btn" ng-click="unarchiveExpense(expense)"><i class="icon-reply"></i></a>
+        <a class="btn" ng-click="destroyExpense($index)"><i class="icon-trash"></i></a>
     </li>
 </ul>
 <h3>Totals</h3>

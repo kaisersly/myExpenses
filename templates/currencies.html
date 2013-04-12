@@ -1,56 +1,67 @@
-<div>
-    <h3>Taux de change</h3>
-    <form ng-submit="addChange(change)">
-        <ul class="list-table header change">
-            <li></li>
-            <li>De</li>
-            <li></li>
-            <li>Vers</li>
-            <li></li>
-        </ul>
-        <ul class="list-table change" ng-repeat="change in $root.changeList.changes">
-            <li>1</li>
-            <li>{{change.from}}</li>
-            <li>{{change.rate}}</li>
-            <li>{{change.to}}</li>
-            <li>
-                <a class="btn btn-info btn-round" ng-click="editChange(change)">
-                    <i class="icon-edit icon-white"></i>
-                </a>
-                <a class="btn btn-inverse btn-round" ng-click="destroyChange(change)">
-                    <i class="icon-trash icon-white"></i>
-                </a>
-            </li>
-        </ul>
-        <ul class="list-table new change">
-            <li>1</li>
-            <li>
-                <select ng-model="newChange.from">
-                    <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
-                </select>
-            </li>
-            <li>
-                <input id="newChange-rate" type="number" step="any" ng-model="newChange.rate">
-            </li>
-            <li>
-                <select ng-model="newChange.to">
-                    <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
-                </select>
-            </li>
-            <li>
-                <a class="btn btn-warning btn-round" ng-show="editMode" ng-click="clearNewChange()">
-                    <i class="icon-ok icon-white"></i>
-                </a>
-                <a class="btn btn-success btn-round" ng-hide="editMode" ng-click="addChange()">
-                    <i class="icon-plus icon-white"></i>
-                </a>
-            </li>        
-        </ul>
-    </form>
-</div>
-<h3>Devises</h3>
-<ul>
-    <li ng-repeat="currency in $root.currencyList.currencies">
-        {{ currency.name }} | {{ currency.symbol }}
+<h3>Devise d'affichage</h3>
+<select id="displayCurrency" ng-model="$root.displayCurrency">
+    <option></option>
+    <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
+</select>
+<h3>Taux de change</h3>
+<ul class="list-table change headers">
+    <li class="from">De</li>
+    <li class="to">Vers</li>
+    <li class="rate">Taux</li>
+    <li class="actions"></li>
+</ul>
+<ul class="list-table change" ng-class="change == newChange && 'edited'" ng-repeat="change in $root.changeList.changes">
+    <li class="from">{{change.from}}</li>
+    <li class="to">{{change.to}}</li>
+    <li class="rate">{{change.rate}}</li>
+    <li class="actions">
+        <a class="btn" ng-click="editChange(change)"><i class="icon-edit"></i></a>
+        <a class="btn" ng-click="destroyChange(change)"><i class="icon-trash"></i></a>
     </li>
 </ul>
+<ul class="list-table change new">
+    <li class="from">
+        <select ng-model="newChange.from">
+            <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
+        </select>
+    </li>
+    <li class="to">
+        <select ng-model="newChange.to">
+            <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
+        </select>
+    </li>
+    <li class="rate">
+        <input id="newChange-rate" type="number" step="any" ng-model="newChange.rate">
+    </li>
+    <li class="actions">
+        <a class="btn" ng-show="editChangeMode" ng-click="clearNewChange()"><i class="icon-ok"></i></a>
+        <a class="btn" ng-hide="editChangeMode" ng-click="addChange()"><i class="icon-plus"></i></a>
+    </li>
+</ul>
+<h3>Devises</h3>
+<ul class="list-table currency headers">
+    <li>Nom</li>
+    <li>Symbole</li>
+    <li></li>
+</ul>
+<ul class="list-table currency" ng-class="currency == newCurrency && 'edited'" ng-repeat="currency in $root.currencyList.currencies">
+    <li>{{currency.name}}</li>
+    <li>{{currency.symbol}}</li>
+    <li class="actions">
+        <a class="btn" ng-click="editCurrency(currency)"><i class="icon-edit"></i></a>
+        <a class="btn" ng-click="destroyCurrency(currency)"><i class="icon-trash"></i></a>
+    </li>
+</ul>
+<ul class="list-table currency new">
+    <li>
+        <input type="text" ng-model="newCurrency.name">
+    </li>
+    <li>
+        <input type="text" ng-model="newCurrency.symbol">
+    </li>
+    <li class="actions">
+        <a class="btn" ng-show="editCurrencyMode" ng-click="clearNewCurrency()"><i class="icon-ok"></i></a>
+        <a class="btn" ng-hide="editCurrencyMode" ng-click="addCurrency()"><i class="icon-plus"></i></a>
+    </li>
+</ul>
+<div>

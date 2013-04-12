@@ -1,0 +1,71 @@
+/*
+    COLORS
+
+    menu: #333
+    active: #555
+    hover: #777
+    shadow: #424242
+*/
+
+/*
+    BOX SIZING
+*/
+
+.menu {
+    position: fixed;
+    bottom: 0;
+    
+    margin: 0;
+    padding: 0;
+    border: 0;
+    
+    width: 100%;
+    height: 10%;
+}
+
+.menu li {
+    display: inline-block;
+    
+    width: 20%;
+    height: 100%;
+}
+
+.menu .btn {
+    display: block;
+    height: 100%;
+    padding-top: 22%;
+}
+
+.menu li a span { display: none }
+
+/*
+    STYLE
+*/
+
+.menu {
+    background-color: #333;
+    list-style-type: none;
+    text-align: center;
+    
+    font-size: 0; /* pour simuler le text-space-collapse (les 4px de margin) */
+}
+
+.menu li {
+    font-size: 1rem; /* pour simuler le text-space-collapse (les 4px de margin) */
+}
+
+.menu .btn {
+    color: white;
+}
+
+.menu .active, .menu li:hover {
+	-moz-box-shadow: inset 0px 0px 15px 0px #424242; 
+	-webkit-box-shadow: inset 0px 0px 15px 0px #424242; 
+	box-shadow: inset 0px 0px 15px 0px #424242; 
+}
+.menu .active {
+    background-color: #555;
+}
+.menu li:hover {
+    background-color: #777;
+}

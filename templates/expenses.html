@@ -1,47 +1,45 @@
-<form ng-submit="addExpense()">
-    <h3>Dépenses</h3>
-    <ul class="list-table header expense">
-        <li>Nom</li>
-        <li>Montant</li>
-        <li><span class="full">Quantité</span><span class="mini">Qté</span></li>
-        <li>Total</li>
-    </ul>
-    <ul class="list-table expense" ng-class="expense == newExpense && 'edited'" ng-repeat="expense in $root.expenseList.expenses" ng-hide="expense.archivedAt">
-        <li ng-click="showActions = false">{{expense.name}}</li>
-        <li ng-class="expenseRenderer('price', expense)[1] && 'converted'" ng-click="showActions = false">{{expenseRenderer("price", expense)[0]}}</li>
-        <li ng-click="showActions = false">{{expense.quantity}}</li>
-        <li ng-class="expenseRenderer('price', expense)[1] && 'converted'" ng-click="showActions = !showActions">
-            <span ng-show="showActions">
-                <a class="btn btn-info btn-round" ng-click="editExpense(expense)">
-                    <i class="icon-edit icon-white"></i>
-                </a>
-                <a class="btn btn-round" ng-click="archiveExpense(expense)">
-                    <i class="icon-calendar"></i>
-                </a>
-            </span>
-            <span ng-hide="showActions">{{expenseRenderer("total()", expense)[0]}}</span>
-        </li>
-    </ul>
-    <ul class="list-table newExpense new expense">
-        <li><input type="text" ng-model="newExpense.name"></li>
-        <li><input type="number" step="any" ng-model="newExpense.price"></li>
-        <li><input type="number" step="any" ng-model="newExpense.quantity"></li>
-        <li>
-            <select ng-model="newExpense.currencyName">
-                <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
-            </select>
-        </li>
-        <li>
-            {{newExpense.total()|currency:""}}
-        </li>
-    </ul>
-    <button class="btn btn-warning btn-block" ng-show="editMode" ng-click="clearNewExpense()">
-        <i class="icon-ok icon-white"></i>
-    </button>
-    <button class="btn btn-success btn-block" ng-hide="editMode" ng-click="addExpense()">
-        <i class="icon-plus icon-white"></i>
-    </button>
-</form>
+<h3>Dépenses</h3>
+<ul class="list-table expense headers">
+    <li class="name">Nom</li>
+    <li class="price">Prix</li>
+    <li class="qte">Qté</li>
+    <li class="price">Total</li>
+</ul>
+<ul class="list-table expense" ng-class="expense == newExpense && 'edited'" ng-repeat="expense in $root.expenseList.expenses" ng-hide="expense.archivedAt">
+    <li class="name" ng-click="showActions = false">{{expense.name}}</li>
+    <li class="price" ng-class="expenseRenderer('price', expense)[1] && 'converted'" ng-click="showActions = false">
+        <span>
+            {{expenseRenderer("price", expense)[0]}}
+        </span>
+    </li>
+    <li class="qte" ng-click="showActions = false">{{expense.quantity}}</li>
+    <li class="price" ng-class="expenseRenderer('price', expense)[1] && 'converted'" ng-click="showActions = true" ng-hide="showActions">
+        <span>
+            {{expenseRenderer("total()", expense)[0]}}
+        </span>
+    </li>
+    <li class="actions" ng-show="showActions">
+        <a class="btn" ng-click="editExpense(expense)"><i class="icon-edit"></i></a>
+        <a class="btn" ng-click="archiveExpense(expense)"><i class="icon-check"></i></a>
+    </li>
+</ul>
+<ul class="list-table expense new">
+    <li class="name"><input type="text" placeholder="nom" ng-model="newExpense.name"></li>
+    <li class="price"><input type="number" placeholder="prix" step="any" ng-model="newExpense.price"></li>
+    <li class="qte"><input type="number" placeholder="qté" step="any" ng-model="newExpense.quantity"></li>
+    <li class="price">{{newExpense.total()|currency:""}}</li>
+    <li>
+        <select ng-model="newExpense.currencyName">
+            <option ng-repeat="currency in $root.currencyList.currencies">{{currency.name}}</option>
+        </select>
+    </li>
+    <li class="actions">
+        <a class="btn" ng-show="editMode" ng-click="clearNewExpense()"><i class="icon-ok"></i></a>
+        <a class="btn" ng-hide="editMode" ng-click="addExpense()"><i class="icon-plus"></i></a>
+        <a class="btn" ng-hide="editMode" ng-click="clearNewExpense()"><i class="icon-remove"></i></a>
+    </li>
+</ul>
+
 <h3>Totals</h3>
 <ul>
     <li ng-repeat="total in totals()">{{total}}</li>

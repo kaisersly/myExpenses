@@ -1,0 +1,164 @@
+.list-table {
+    padding: 0;    
+    list-style-type: none;
+    -webkit-margin-after: 0;
+    -webkit-margin-before: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.list-table li {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+.list-table li input, .list-table li input {
+    width: 90%;
+}
+
+.list-table .currency {
+    width: 15%;
+    text-align: center;
+}
+
+.list-table .name {
+    width: 30%;
+}
+.list-table .qte {
+    width: 10%;
+}
+
+.list-table .price {
+    width: 25%;
+}
+
+
+.list-table .actions {
+    width: 25%;
+    font-size: 1.3rem;
+}
+
+.list-table i {
+    margin-left: 5px;   
+}
+
+
+/*
+    EXPENSE
+*/
+
+.list-table.expense {
+    border-bottom: 2px dotted #DDD;
+    font-size: 0.7em;
+}
+
+.list-table.expense input {
+    text-align: center;   
+}
+
+
+.list-table.expense.new .actions {
+    margin-top: 5px;
+    width: 100%;
+    letter-spacing: 20px;
+}
+
+.list-table.expense .date {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-top: 2px solid #AAA; 
+    border-bottom: 2px solid #AAA; 
+    
+    width: 97%;
+    background-color: #eee;
+}
+
+/*
+    CHANGE
+*/
+
+.list-table.change .from, .list-table.change .to, .list-table.change .rate, .list-table.change .actions {
+    width: 22%;
+}
+
+.list-table.change.new input, .list-table.change.new select {
+    width: 70%;
+}
+
+.list-table.change.new input {
+    text-align: center;
+}
+
+.list-table.change.new select {
+    padding-left: 5px;
+}
+
+/*
+    CURRENCY
+*/
+
+.list-table.currency li {
+    width: 30%;
+}
+
+.list-table.currency input {
+    text-align: center;
+    width: 70%;
+}
+
+#displayCurrency {
+    width: 45px;
+}
+
+/*
+    CONVERTER
+*/
+
+.list-table.converter {
+    -webkit-margin-after: 1em;
+    -webkit-margin-before: 1em;
+    padding: 0;
+}
+
+.list-table.converter .price {
+    width: 30%;
+}
+
+.list-table.converter .price input[type=number] {
+    padding: 0;
+    width: 6em;
+    text-align: right;
+}
+
+.list-table.converter .actions {
+    width: 100%;
+    text-align: left;
+}
+
+/*
+    HEADERS
+*/
+
+.list-table.headers {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #555;
+}
+
+/*
+    COLORED
+*/
+
+.list-table.edited {
+    background-color: #FFFFEE;
+}
+
+.list-table.new {
+    margin-top: 10px;
+    border: 0; 
+    box-shadow: 0 0 10px 0 #DDD;
+    background-color: #F8F8F8;
+}
+
+.list-table .converted {
+    color: #AAA;
+}
