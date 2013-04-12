@@ -4,9 +4,7 @@ CACHE MANIFEST
 CACHE:
 # web fonts
 http://themes.googleusercontent.com/static/fonts/autourone/v1/7LzkKwczNE2R2ZQSt90y1b3hpw3pgy2gAi-Ip7WPMi0.woff
-http://fonts.googleapis.com/css?family=Autour+One
 http://themes.googleusercontent.com/static/fonts/robotocondensed/v7/b9QBgL0iMZfDSpmcXcE8nPZRQUbYfRc-1FWT9T9EE8M.woff
-http://fonts.googleapis.com/css?family=Roboto+Condensed:700
 # font awesome
 font/fontawesome-webfont.eot?v=3.0.1
 font/fontawesome-webfont.eot?#iefix&v=3.0.1'
